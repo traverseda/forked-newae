@@ -1,0 +1,14 @@
+.anm-drawer {
+  transition: transform 1s ease-in-out;
+  transform: translateX(100%);
+}
+
+.anm-nav--on {
+  transition: transform 300ms ease-in-out;
+}
+
+body.ready {
+  .anm-drawer--on {
+    transform: translateX(0);
+  }
+}

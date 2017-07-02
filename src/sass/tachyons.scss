@@ -1,0 +1,49 @@
+@import "vendor/tachyons.min";
+
+@mixin breakpoints($name) {
+  .#{$name} {
+    @content;
+  }
+
+  @media screen and (min-width: 30em) {
+    .#{$name}-ns {
+      @content;
+    }
+  }
+  
+  @media screen and (min-width: 45em ) {
+    .#{$name}-m {
+      @content;
+    }
+  }
+
+  @media screen and (min-width: 60em) {
+    .#{$name}-l {
+      @content;
+    }
+  }
+}
+
+@include breakpoints('content-box') {
+  box-sizing: content-box;
+}
+
+@include breakpoints('border-box') {
+  box-sizing: border-box;
+}
+
+@include breakpoints('flex-column-nowrap') {
+  flex-flow: column nowrap;
+}
+
+@include breakpoints('flex-row-nowrap') {
+  flex-flow: row nowrap;
+}
+
+.click-through {
+  pointer-events: none;
+}
+
+.z-negative {
+  z-index: -1;
+}

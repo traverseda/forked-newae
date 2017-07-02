@@ -1,0 +1,52 @@
+(function($) {
+
+  $(function() { 
+    $('[data-action="drawer"], [data-action=\'drawer\'], #drawer-overlay').click(function(e) {
+      e.preventDefault();
+
+      toggleOverlay();
+      toggleDrawer();
+
+    });
+
+    $('[data-core]').click(function() {
+      var pk = $(this).data('core');
+
+      $.get("/core/" + pk, function(data) {
+          console.log(data);
+        toggleOverlay(); 
+      })
+        .done(function(data) {
+          var mount = $('#core-mount');
+              mount.html(data);
+
+          drawer = $('#drawer');
+          drawerOverlay = $('#drawer-overlay');
+
+          toggleDrawer(drawer);
+          toggleOverlay(drawerOverlay);
+        })
+        .fail(function(data) {
+          toggleOverlay();
+          console.warn(data.responseText)
+        });
+
+    });
+
+    function toggleOverlay(override) {
+      var drawerOverlay = $('#drawer + #drawer-overlay');
+      var t = (override != null) ? override : drawerOverlay;
+      t.toggleClass('absolute--fill o-20 o-0');
+
+    }
+
+    function toggleDrawer(override) {
+      var drawer = $('#drawer');
+      var t = (override != null) ? override : drawer;
+      t.toggleClass('anm-drawer--on');
+
+    }
+
+  });
+
+})(jQuery);

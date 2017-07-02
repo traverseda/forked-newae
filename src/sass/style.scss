@@ -1,0 +1,159 @@
+body {
+  font-family: 'lato', sans-serif;
+}
+
+a:link, a:visited, a:active, .link {
+  color: #4990E2;
+  border-color: initial;
+}
+
+input, .input-radio, .input-check, select {
+  cursor: pointer;
+}
+
+// Handles css-only tooltips
+[data-tooltip] {
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+
+/* Hide the tooltip content by default */
+[data-tooltip]:before,
+[data-tooltip]:after {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Position tooltip above the element */
+[data-tooltip]:before {
+  position: absolute;
+  bottom: 150%;
+  left: 50%;
+  margin-bottom: 5px;
+  margin-left: calc(-50%);
+  padding: 7px 13px;
+  width: auto;
+  border-radius: 3px;
+  background-color: #000;
+  background-color: hsla(0, 0%, 20%, 0.9);
+  color: #fff;
+  content: attr(data-tooltip);
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+/* Triangle hack to make tooltip look like a speech bubble */
+[data-tooltip]:after {
+  position: absolute;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -5px;
+  width: 0;
+  border-top: 5px solid #000;
+  border-top: 5px solid hsla(0, 0%, 20%, 0.9);
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  content: " ";
+  font-size: 0;
+  line-height: 0;
+}
+
+/* Show tooltip content on hover */
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+  visibility: visible;
+  opacity: 1;
+}
+
+// Handles radio inputs
+.input-radio input:checked + span:before {
+	content: '●';
+	position: relative;
+	top: -0.1rem;
+}
+
+// Handles checkbox inputs
+.input-check input:checked + span:before {
+	content: '✓';
+	position: relative;
+	top: -0.1rem;
+}
+
+.input-select select {
+  color: inherit;
+}
+
+.input-select:after {
+  content: "⌄";
+  display: inline-block;
+}
+
+// handles master view filter animations
+.master-filter {
+
+
+}
+
+// .anm-btn handles btn hover animation
+.anm-btn {
+  z-index: 1;
+}
+
+.anm-btn:after {
+  content: '';
+  background: #4990E2; //TK: need to write macro for colors
+  position: absolute;
+  height: 100%;
+  width: 0;
+  transition: all 0.3s;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.anm-btn:hover:after {
+  width: 100%;
+}
+
+// Handles master-child interactions
+.master-child {
+
+	// handles master overlay interaction
+	#master {
+		transition: opacity 500ms ease-in;
+	}
+
+  .anm-master {
+    opacity: 0;
+    z-index: -1;
+  }
+
+}
+
+@media screen and (min-width: 60em) {
+  .master-child {
+    > *:first-child {
+      max-width: 350px;
+    }
+
+    .anm-master {
+      opacity: 100;
+      z-index:unset;
+    }
+
+		#master > div:first-child {
+			box-sizing: content-box; width: 340px; padding-right: 30px; position: sticky; top: 50px;
+		}
+  }
+}
+
+@media screen and (min-width: 30em) {
+  #search {
+    height: 12rem;
+    left: 0;
+    right: 0;
+  }
+}
